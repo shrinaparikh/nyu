@@ -1,0 +1,12 @@
+.column {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 2em;
+}
+#genreList > * {
+	cursor: pointer;
+	padding: 0.2em;
+	}
+#genreList > *:hover {
+	background-color: #55bbcc;
+}

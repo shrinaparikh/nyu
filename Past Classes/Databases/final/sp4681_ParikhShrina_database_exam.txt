@@ -1,0 +1,68 @@
+                ## CSCI-UA.60-1 Final Exam  
+                ## By Shrina Parikh
+
+
+Question 2:
+(a) Define a left join, a right join and an inner join.
+
+An Inner join comes in two forms: implicit and explicit. Inner joins show records with matches in both tables that are selected, and by definition complies with referential integrity. An explicit inner join uses the "INNER JOIN" key word and an implicit inner join uses the WHERE clause.
+
+A left join shows all results in the source table regardless of whether or not there is a result in the related match table. In a 1 to many relationship, the "1 table" is on the left. Unmatched results do not necessarily indicate a problem with the data. One can use the WHERE clause and the keyword 'IS NULL' in order to show items that do not have any matching results in the right table, or the "many" table.
+
+A right join, however, does indicate a problem with referential integrity. It brings up results in the right table, the "many" table regardless of whether or not there is a match. Using "IS NULL" can show which records are in violation of referential integrity. 
+
+(b) Write an example of a left join by writing the MySQL queries necessary to INSERT at least 3 records into two of the tables above that you designed in Problem #1; and then write a SELECT query which uses a left join.
+
+#two insert statements for entering 3 records
+INSERT INTO `Exhibitions` VALUES (1,'The Nature of Color', 2020-03-09, 2021-08-08, 'Everyone', 'Our World is Awash in Color', 0.00, YES);
+INSERT INTO `Audience` VAULES ('Everyone'),('Kids');
+
+SELECT a.Type FROM Audience a
+LEFT JOIN Exhibitions ex ON a.Type = ex.IntendedAudience
+WHERE ex.IntendedAudience IS NULL;
+
+
+(c) Describe your results in several sentences and explain how this example demonstrates the results of a left join instead of a right join or an inner join.
+
+There is a one to many relationship between audience types and exhibitions, for there can be many exhibitions meant for everyone or meant for just students. The left join here displays types of intended audiences that no exhibitions are curated for. An inner join would show matches; inner joins would show exhibitions with certain intended audiences, for example. A right join would show an exhibition that is entered with an intended audience that is not listed in the audiences table, which would violate referential integrity.
+
+Question 3:
+a) db.exam.count({});
+b) db.exam.find({"CITY":"Bronx"}).count();
+c)db.exam.find({"ZIP":"11371"}, {_id:0, "NAME":1,"ADDRESS":1});
+d)db.exam.find({"City":{$in:["Brooklyn,"Queens"] }}, {_id:0, "NAME":1}).sort({"NAME":1});
+e) db.exam.find({$and:[{"ZIP":{$gte:10001}},{"ZIP":{$lte:10011}}]}, {_id:0, "NAME":1, "ZIP":1}).sort({"ZIP":1, "NAME": 1});
+
+
+Question 4:
+
+Similarity 1: Descriptive statistics
+SQLite: has built in functions to easily compute descriptive numerical information such as AVG, COUNT, MIN, MAX, COUNT
+SELECT State, Name, SUM(deaths)
+FROM deaths
+GROUP BY State
+Python: pandas has descriptive and summary statistics: count, min, max, sum, mean
+n = (df['EQ_MAG']>0).sum() 
+
+Similarity 2: selection
+SQLite: WHERE price > 15 
+Python: in pandas: df.loc[(df["price"]>15)]
+
+Difference 1: stucture of information
+Python: dictionaries are used in the following way for key value pairs : Dict[key] --> returns value associated with key
+to add to a dict: Dict[key1] = newValue1
+SQLite: INSERT statements for importing data in a row structure
+INSERT INTO tableName VALUES(field1Val,field2Val);
+
+Difference 2: concatenation
+Python: strings, lists, can be concatenated with '+'
+'string1' + 'string2' = 'string1string2'
+SQLite: || operator
+SELECT nameFirst || nameLast FROM table1 
+
+Diff 3: visuals
+SQLite: cannot create images
+Python: matplotlib: 
+
+
+

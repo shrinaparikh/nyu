@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+	<h2>
+		Discounts
+	</h2>
+
+
+	<body>	
+		<table>
+			<thead>
+
+			</thead>
+			<tbody>
+				{{#each arr2 as |ele|}}
+					<tr>
+						<td>{{ele.price}}</td>
+						<td>{{ele.id}}</td>
+
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+			{{{ body }}}			
+</body>

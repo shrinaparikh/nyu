@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+	<h2>
+		Products
+	</h2>
+
+<div class = form>
+<form method="GET" action="/products">
+
+	<label for="name"> Name: </label>
+	<input type = "text" id="name" name="name">
+	<br>
+
+	<label for="price"> Price: </label>
+	<input type = "text" id="price" name="price">
+	<br>
+
+	<input type="submit" value = "Filter"><br><br>
+	</form>
+
+</div>
+
+
+	<body>	
+		<table>
+			<thead>
+				<th colspan="1">Name</th>
+				<th colspan="1"> Price</th>
+			</thead>
+			<tbody>
+				{{#each arr as |ele|}}
+					<tr>
+						<td>{{ele.name}}</td>
+						<td>{{ele.price}}</td>
+
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+			{{{ body }}}			
+</body>

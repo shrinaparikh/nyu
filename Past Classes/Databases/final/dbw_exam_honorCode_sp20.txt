@@ -1,0 +1,29 @@
+Honor Code (This should be submitted as a TXT file in your submission.)
+
+CSCI-UA.60-1
+Spring 2020
+Final Exam
+
+* You will be required to keep your Zoom session active throughout the entire exam.
+
+* You will be permitted to "chat" with your instructor privately using the Zoom "chat" window during the exam if you have a question.
+
+* You may use any class digital resource you wish (class website, sample code we developed in class, previous homework assignments, etc.)
+
+* You may use the course textbooks.
+
+* You may use only your computer during the exam period – no phones or other devices are allowed.
+
+* You may NOT use communication tools to collaborate with other humans. This includes but is not limited to G-Chat, Messenger, E-mail, etc. 
+
+* Anyone found sharing code or communicating with anyone except the instructor during the exam period will earn an immediate grade of zero.
+
+
+
+"I understand the ground rules and agree to abide by them. I will not share code or assist another student during this exam, nor will I seek assistance from another student or attempt to view their code."
+
+
+
+Name:  _Shrina Parikh
+NYU Net ID: _sp4681
+

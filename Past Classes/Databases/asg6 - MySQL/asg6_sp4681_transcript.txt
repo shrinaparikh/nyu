@@ -1,0 +1,342 @@
+Last login: Fri Apr 24 16:19:35 on ttys001
+-bash: /Users/shrinaparikh/.profile: No such file or directory
+(base) shrinas-MacBook-Air:~ shrinaparikh$ ssh i6.cims.nyu.edu -l sp4681
+Password: 
+Last login: Fri Apr 24 16:19:53 2020 from 24.0.248.104
+You are using 7% of your 2.0G quota for /home/sp4681.
+You are using 0% of your 1.0G quota for /web/sp4681.
+[sp4681@i6 ~]$ ls
+databases  dataFiles  mail  mysqlFiles  opt  perl5  public_html  usr  var
+[sp4681@i6 ~]$ cd mysqlFiles
+[sp4681@i6 mysqlFiles]$ ls
+art.sql   sp4681_backup2.sql  sp4681.backup.sql  test3.sql  test.sql
+asg6.sql  sp4681_backup.sql   test2.sql          test4.sql  world.sql
+[sp4681@i6 mysqlFiles]$ mysql -hwarehouse -p sp4681_test2
+Enter password: 
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 4256
+Server version: 5.5.64-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [sp4681_test2]> SOURCE sp4681_backup2.sql;
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 20 rows affected (0.00 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 43 rows affected (0.00 sec)
+Records: 43  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 20 rows affected (0.00 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT al.name, s.artistName, s.position AS songPosition, al.position AS albumPosition FROM albums al INNER JOIN songs s ON s.artistName = al.artist ORDER BY s.position;
++----------------------+---------------+--------------+---------------+
+| name                 | artistName    | songPosition | albumPosition |
++----------------------+---------------+--------------+---------------+
+| After Hours          | The Weeknd    |            1 |             7 |
+| Future Nostalgia     | Dua Lipa      |            4 |             2 |
+| Fine Line            | Harry Styles  |            6 |             8 |
+| When We All Fall Asl | Billie Eilish |           10 |            11 |
+| Divinely Uninspired  | Lewis Capaldi |           11 |             5 |
++----------------------+---------------+--------------+---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT al.name as album, s.name AS song, s.artistName, s.position AS songPosition, al.position AS albumPosition FROM albums al INNER JOIN songs s ON s.artistName = al.artist ORDER BY s.position;
++----------------------+---------------------+---------------+--------------+---------------+
+| album                | song                | artistName    | songPosition | albumPosition |
++----------------------+---------------------+---------------+--------------+---------------+
+| After Hours          | Blinding Lights     | The Weeknd    |            1 |             7 |
+| Future Nostalgia     | Don't Start Now     | Dua Lipa      |            4 |             2 |
+| Fine Line            | Adore You           | Harry Styles  |            6 |             8 |
+| When We All Fall Asl | everything i wanted | Billie Eilish |           10 |            11 |
+| Divinely Uninspired  | Someone You Loved   | Lewis Capaldi |           11 |             5 |
++----------------------+---------------------+---------------+--------------+---------------+
+5 rows in set (0.01 sec)
+
+MariaDB [sp4681_test2]> SELECT s.name AS song, a.name, a.position as artistRanking, s.position AS songRanking FROM songs s, artists a WHERE s.artistName = a.name HAVING a.position > 0 ORDER BY artistRanking;
++---------------------+---------------+---------------+-------------+
+| song                | name          | artistRanking | songRanking |
++---------------------+---------------+---------------+-------------+
+| Blinding Lights     | The Weeknd    |             1 |           1 |
+| everything i wanted | Billie Eilish |             2 |          10 |
+| Toosie Slide        | Drake         |             3 |           2 |
+| Circles             | Post Malone   |             4 |           7 |
+| Don't Start Now     | Dua Lipa      |             7 |           4 |
+| The Box             | Roddy Ricch   |             8 |           3 |
++---------------------+---------------+---------------+-------------+
+6 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT a.name, s.artistName FROM artists a LEFT JOIN songs s ON a.name = s.artistName WHERE a.position > 0;
++---------------+---------------+
+| name          | artistName    |
++---------------+---------------+
+| Billie Eilish | Billie Eilish |
+| BTS           | NULL          |
+| DaBaby        | NULL          |
+| Drake         | Drake         |
+| Dua Lipa      | Dua Lipa      |
+| John Pine     | NULL          |
+| Lil Baby      | NULL          |
+| Lil Uzi Vert  | NULL          |
+| Luke Combs    | NULL          |
+| Post Malone   | Post Malone   |
+| Rod Wave      | NULL          |
+| Roddy Ricch   | Roddy Ricch   |
+| The Strokes   | NULL          |
+| The Weeknd    | The Weeknd    |
+| Tory Lanez    | NULL          |
++---------------+---------------+
+15 rows in set (0.01 sec)
+
+MariaDB [sp4681_test2]> SELECT al.artist, s.artistName, al.name as albumName FROM albums al LEFT JOIN songs s on al.artist = s.artistName WHERE s.artistName IS NULL;
++-----------------------------+------------+----------------------+
+| artist                      | artistName | albumName            |
++-----------------------------+------------+----------------------+
+| The Strokes                 | NULL       | The New Abnormal     |
+| Laura Marling               | NULL       | Song For Our Daughte |
+| Nightwish                   | NULL       | Human II Nature      |
+| Joe Satriani                | NULL       | Shapeshifting        |
+| Cadet                       | NULL       | The Rated Legend     |
+| Pearl Jam                   | NULL       | Gigaton              |
+| Paul Heaton & Jacqui Abbott | NULL       | Machester Calling    |
+| Kidz Bop Kids               | NULL       | Kidz Bop 2020        |
+| Rod Stewart                 | NULL       | You're In My Heart   |
+| Elton John                  | NULL       | Diamonds             |
+| Fleetwood Mac               | NULL       | Rumours              |
+| Matt Monro                  | NULL       | Stranger in Paradise |
+| Queen                       | NULL       | The Platinum Collect |
+| Bob Marley & The Wailers    | NULL       | Legend               |
+| Shires                      | NULL       | Good Years           |
++-----------------------------+------------+----------------------+
+15 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT s.artistName, s.name, s.duration FROM songs s WHERE s.duration > (SELECT AVG(duration) FROM songs) ORDER BY s.duration DESC;
++----------------+---------------------+----------+
+| artistName     | name                | duration |
++----------------+---------------------+----------+
+| Lewis Capaldi  | Someone You Loved   |       49 |
+| Post Malone    | Circles             |       33 |
+| blackbear      | Hot Girl Bummer     |       31 |
+| Maren Morris   | The Bones           |       30 |
+| Maroon 5       | Memories            |       30 |
+| Dua Lipa       | Don't Start Now     |       24 |
+| Arizona Zervas | Roxanne             |       24 |
+| Billie Eilish  | everything i wanted |       23 |
++----------------+---------------------+----------+
+8 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT al.artist FROM albums al WHERE al.artist IN (SELECT s.artistName FROM songs s WHERE s.lastWeek > s.position);
++--------------+
+| artist       |
++--------------+
+| Harry Styles |
+| The Weeknd   |
++--------------+
+2 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT a.name FROM artists a WHERE a.name IN (SELECT al.artist FROM albums al INNER JOIN songs s ON s.artistName = al.artist);
++---------------+
+| name          |
++---------------+
+| Billie Eilish |
+| Dua Lipa      |
+| Harry Styles  |
+| Lewis Capaldi |
+| The Weeknd    |
++---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT a.name AS artist, s.name AS song, s.position, al.name AS album FROM songs s INNER JOIN artists a ON s.artistName = a.name INNER JOIN albums al ON s.artistName = al.artist WHERE a.position > 0;
++---------------+---------------------+----------+----------------------+
+| artist        | song                | position | album                |
++---------------+---------------------+----------+----------------------+
+| The Weeknd    | Blinding Lights     |        1 | After Hours          |
+| Dua Lipa      | Don't Start Now     |        4 | Future Nostalgia     |
+| Billie Eilish | everything i wanted |       10 | When We All Fall Asl |
++---------------+---------------------+----------+----------------------+
+3 rows in set (0.01 sec)
+
+MariaDB [sp4681_test2]> SELECT a.name FROM artists a INNER JOIN songs s ON a.name = s.artistName WHERE a.name IN (SELECT s.artistName FROM songs s WHERE peak = 1) AND a.position > 0;
++-------------+
+| name        |
++-------------+
+| Drake       |
+| Post Malone |
+| Roddy Ricch |
+| The Weeknd  |
++-------------+
+4 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT s.artistName FROM songs s RIGHT JOIN artists a ON s.artistName = a.name WHERE a.name IS NULL;
+Empty set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT a.name, a.position AS artistRanking, s.position AS songRanking, al.position AS albumRANKING FROM artists a, songs s, albums al WHERE a.name = s.artistName AND a.name = al.artist ORDER BY a.position;
++---------------+---------------+-------------+--------------+
+| name          | artistRanking | songRanking | albumRANKING |
++---------------+---------------+-------------+--------------+
+| Harry Styles  |             0 |           6 |            8 |
+| Lewis Capaldi |             0 |          11 |            5 |
+| The Weeknd    |             1 |           1 |            7 |
+| Billie Eilish |             2 |          10 |           11 |
+| Dua Lipa      |             7 |           4 |            2 |
++---------------+---------------+-------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT name, position, lastWeek, duration FROM songs ORDER BY duration;
++---------------------+----------+----------+----------+
+| name                | position | lastWeek | duration |
++---------------------+----------+----------+----------+
+| Toosie Slide        |        2 |        1 |        2 |
+| Savage              |       14 |       14 |        5 |
+| Intentions          |        9 |        9 |       10 |
+| Blueberry Faygo     |       16 |       18 |       10 |
+| Nobody But You      |       18 |       24 |       14 |
+| Life is Good        |        8 |        5 |       14 |
+| Say So              |        5 |        8 |       15 |
+| I Hope              |       17 |       20 |       16 |
+| Adore You           |        6 |        7 |       19 |
+| My Oh My            |       12 |       13 |       19 |
+| The Box             |        3 |        3 |       19 |
+| Blinding Lights     |        1 |        2 |       20 |
+| everything i wanted |       10 |       10 |       23 |
+| Roxanne             |       19 |       16 |       24 |
+| Don't Start Now     |        4 |        4 |       24 |
+| The Bones           |       13 |       12 |       30 |
+| Memories            |       15 |       15 |       30 |
+| Hot Girl Bummer     |       20 |       17 |       31 |
+| Circles             |        7 |        6 |       33 |
+| Someone You Loved   |       11 |       11 |       49 |
++---------------------+----------+----------+----------+
+20 rows in set (0.01 sec)
+
+MariaDB [sp4681_test2]> SELECT AVG(ABS(s.peak - s.position)) FROM songs s;
++-------------------------------+
+| AVG(ABS(s.peak - s.position)) |
++-------------------------------+
+|                        3.4000 |
++-------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [sp4681_test2]> SELECT s.artistName, s.name, ABS(s.peak - s.position) AS jump FROM songs s;
++---------------------+---------------------+------+
+| artistName          | name                | jump |
++---------------------+---------------------+------+
+| The Weeknd          | Blinding Lights     |    0 |
+| Drake               | Toosie Slide        |    1 |
+| Roddy Ricch         | The Box             |    2 |
+| Dua Lipa            | Don't Start Now     |    2 |
+| Doja Cat            | Say So              |    0 |
+| Harry Styles        | Adore You           |    0 |
+| Post Malone         | Circles             |    6 |
+| Future              | Life is Good        |    6 |
+| Justin Bieber       | Intentions          |    1 |
+| Billie Eilish       | everything i wanted |    2 |
+| Lewis Capaldi       | Someone You Loved   |   10 |
+| Camila Cabello      | My Oh My            |    0 |
+| Maren Morris        | The Bones           |    1 |
+| Megan Thee Stallion | Savage              |    0 |
+| Maroon 5            | Memories            |   13 |
+| Lil Mosey           | Blueberry Faygo     |    0 |
+| Gabby Barrett       | I Hope              |    0 |
+| Blake Shelton       | Nobody But You      |    0 |
+| Arizona Zervas      | Roxanne             |   15 |
+| blackbear           | Hot Girl Bummer     |    9 |
++---------------------+---------------------+------+
+20 rows in set (0.00 sec)
+
+MariaDB [sp4681_test2]> 

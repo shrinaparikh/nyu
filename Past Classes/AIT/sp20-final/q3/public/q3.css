@@ -1,0 +1,21 @@
+.cell {
+	width: 25px;
+	height: 25px;
+	margin: 3px;
+	text-align: center;
+	padding: 1em;
+	border: 2px solid black;
+	color: #D3D3D3;
+	/* TODO: finish this css */
+}
+
+.clicked {
+	color: black;
+	background-color: #fff;
+} 
+
+.row {
+	display: inline-block;
+}
+
+/* TODO (optional): add css rules as necessary */

@@ -1,0 +1,28 @@
+to import, I used:
+mongoimport --db sp4681 --collection zips --host class-mongodb.cims.nyu.edu --username sp4681 --password 7dxcLvBA --type json --file zips.json
+
+1. 540
+query: db.zips.count({"state":"NJ"},{});
+
+2. 30346, 30148, 31743, 31327, 31066
+query: db.zips.find({"state": "GA","pop":{$gt:0}},{"pop":1}).sort({"pop":1}).limit(5);
+
+3. 
+zip: 10451 population: 42854 
+zip: 10452 population: 55890
+zip: 10453 population: 70544
+query: db.zips.find({"city":"BRONX"},{"pop":1}).limit(3);
+
+4. 29078
+query: db.zips.count({"state":{$nin:["HI","AK","PR"]}});
+
+5. 2398
+db.zips.count({"state":{$in:["NJ","NY","CT"]}});
+
+6. Question: What is the total population of New Jersey, according to the data set? 
+Answer: 7730188
+db.zips.aggregate([{$match:{state:"NJ"}},{$group:{_id:null,population:{$sum:"$pop"}}}]);
+
+7. Question: What are the 15 cities in New Jersey with the highest populations?
+Answer: 07087, 07002, 07111, 07305, 07055, 08753, 08360, 07306, 07047, 08021, 08701, 07104, 08854, 07470, 07083
+db.zips.find({"state":"NJ"},{"city":1,"pop":1,"state":1}).sort({"pop":-1}).limit(15);

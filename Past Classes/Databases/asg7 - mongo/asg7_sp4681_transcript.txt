@@ -1,0 +1,52 @@
+Last login: Mon Apr 27 01:31:53 on ttys001
+-bash: /Users/shrinaparikh/.profile: No such file or directory
+(base) shrinas-MacBook-Air:~ shrinaparikh$ ssh i6.cims.nyu.edu -l sp4681
+Password: 
+Last login: Mon Apr 27 01:38:56 2020 from 24.0.248.104
+You are using 7% of your 2.0G quota for /home/sp4681.
+You are using 0% of your 1.0G quota for /web/sp4681.
+[sp4681@i6 ~]$ ls
+databases  mail         mysqlFiles  perl5        usr
+dataFiles  myjsonFiles  opt         public_html  var
+[sp4681@i6 ~]$ cd myjsonFiles
+[sp4681@i6 myjsonFiles]$ module load mongodb-3.2.0
+[sp4681@i6 myjsonFiles]$ mongo sp4681 --host class-mongodb.cims.nyu.edu -u sp4681 -p 7dxcLvBA
+MongoDB shell version: 3.2.0
+connecting to: class-mongodb.cims.nyu.edu:27017/sp4681
+> db.zips.count({"state":"NJ"},{});
+540
+> db.zips.find({"state": "GA","pop":{$gt:0}},{"pop":1}).sort({"pop":1}).limit(5);
+{ "_id" : "30346", "pop" : 18 }
+{ "_id" : "30148", "pop" : 98 }
+{ "_id" : "31743", "pop" : 112 }
+{ "_id" : "31327", "pop" : 120 }
+{ "_id" : "31066", "pop" : 121 }
+> db.zips.find({"city":"BRONX"},{"pop":1}).limit(3);
+{ "_id" : "10451", "pop" : 42854 }
+{ "_id" : "10452", "pop" : 55890 }
+{ "_id" : "10453", "pop" : 70544 }
+> db.zips.count({"state":{$nin:["HI","AK","PR"]}});
+29078
+> db.zips.count({"state":{$in:["NJ","NY","CT"]}});
+2398
+> db.zips.aggregate([{$match:{state:"NJ"}},{$group:{_id:null,population:{$sum:"$pop"}}}]);
+{ "_id" : null, "population" : 7730188 }
+> db.zips.aggregate([{$match:{state:"NJ"}},{$group:{_id:null,population:{$sum:"$pop"}}}]);
+{ "_id" : null, "population" : 7730188 }
+> db.zips.find({"state":"NJ"},{"city":1,"pop":1,"state":1}).sort({"pop":-1}).limit(15);
+{ "_id" : "07087", "city" : "WEEHAWKEN", "pop" : 69646, "state" : "NJ" }
+{ "_id" : "07002", "city" : "BAYONNE", "pop" : 61444, "state" : "NJ" }
+{ "_id" : "07111", "city" : "IRVINGTON", "pop" : 60986, "state" : "NJ" }
+{ "_id" : "07305", "city" : "JERSEY CITY", "pop" : 58655, "state" : "NJ" }
+{ "_id" : "07055", "city" : "PASSAIC", "pop" : 58325, "state" : "NJ" }
+{ "_id" : "08753", "city" : "TOMS RIVER", "pop" : 58001, "state" : "NJ" }
+{ "_id" : "08360", "city" : "VINELAND", "pop" : 56319, "state" : "NJ" }
+{ "_id" : "07306", "city" : "JERSEY CITY", "pop" : 53257, "state" : "NJ" }
+{ "_id" : "07047", "city" : "NORTH BERGEN", "pop" : 50823, "state" : "NJ" }
+{ "_id" : "08021", "city" : "LAUREL SPRINGS", "pop" : 48953, "state" : "NJ" }
+{ "_id" : "08701", "city" : "LAKEWOOD", "pop" : 47458, "state" : "NJ" }
+{ "_id" : "07104", "city" : "NEWARK", "pop" : 47183, "state" : "NJ" }
+{ "_id" : "08854", "city" : "PISCATAWAY", "pop" : 47038, "state" : "NJ" }
+{ "_id" : "07470", "city" : "WAYNE", "pop" : 46815, "state" : "NJ" }
+{ "_id" : "07083", "city" : "UNION", "pop" : 46608, "state" : "NJ" }
+> 
